@@ -6,14 +6,14 @@ A production-ready, full-stack multi-vendor e-commerce platform with role-based 
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Backend | Django 4.2 + Django REST Framework |
-| Auth | SimpleJWT (sliding refresh + token blacklist) |
-| Database | MySQL |
-| Cache | Redis (cache-aside with MySQL fallback) |
-| Frontend | React 18 + Bootstrap 5 |
-| HTTP Client | Axios (JWT interceptors + silent refresh) |
+| Layer       | Technology                                      |
+|-------------|-------------------------------------------------|
+| Backend     | Django 4.2 + Django REST Framework              |
+| Auth        | SimpleJWT (sliding refresh + token blacklist)   |
+| Database    | PostgreSQL                                      |
+| Cache       | Redis (cache-aside with PostgreSQL fallback)    |
+| Frontend    | React 18 + Bootstrap 5                          |
+| HTTP Client | Axios (JWT interceptors + silent refresh)       |
 
 ---
 
@@ -23,7 +23,7 @@ A production-ready, full-stack multi-vendor e-commerce platform with role-based 
 NileMart/
 ├── backend/
 │   ├── config/
-│   │   ├── settings.py        # MySQL, Redis, JWT, CORS — all env-driven
+│   │   ├── settings.py        # PostgreSQL, Redis, JWT, CORS — all env-driven
 │   │   ├── urls.py            # Root URL routing
 │   │   └── wsgi.py
 │   ├── apps/
@@ -59,7 +59,7 @@ NileMart/
 
 - Python 3.10+
 - Node.js 18+
-- MySQL 8.0+
+- PostgreSQL 12+
 - Redis 7+
 
 ### Backend Setup
@@ -76,10 +76,10 @@ pip install -r requirements.txt
 
 # 3. Configure environment
 cp .env.example .env
-# Edit .env with your MySQL credentials, Redis URL, and SECRET_KEY
+# Edit .env with your PostgreSQL credentials, Redis URL, and SECRET_KEY
 
-# 4. Create MySQL database
-mysql -u root -p -e "CREATE DATABASE nilemart CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+# 4. Create PostgreSQL database
+psql -U postgres -c "CREATE DATABASE nilemart;"
 
 # 5. Run migrations
 python manage.py makemigrations accounts products orders wallets memberships
